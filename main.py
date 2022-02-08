@@ -20,5 +20,6 @@ our_quiz = QuizBrain(question_bank)
 while our_quiz.still_has_questions():
     our_quiz.next_question()
 
-print(f"""""You've completed the quiz.
-Your final score was {our_quiz.score}/{our_quiz.question_number} or {round((our_quiz.score/our_quiz.question_number)*100)}%.""")
+print(f"You've completed the quiz. "
+      f"Your final score was {our_quiz.score}/{our_quiz.question_number} or "
+      f"{round((our_quiz.score/our_quiz.question_number)*100)}%.")
