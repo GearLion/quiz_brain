@@ -7,5 +7,4 @@ request, JSON import, and the user's ability to choose difficulty and questions.
 Just start up the game and type "true" or "false" in response to the questions asked. Some grammatical mistakes exist from source.
 
 ### Future Improvements
-* I would like the quizbrain to destinguish when it receives no questions into its question bank
-* I would like to fix typos in API generated questions
+* I would like the quizbrain to distinguish when it receives no questions into its question bank
