@@ -3,6 +3,7 @@ from quiz_brain import QuizBrain
 
 THEME_COLOR = "#375362"
 FONT = ("Arial", 20, "italic")
+LABEL_FONT = ("Arial", 10)
 
 
 class QuizInterface:
@@ -18,15 +19,18 @@ class QuizInterface:
         # Score
         self.score_label = Label()
         self.score = 0
-        self.score_label.grid(column=1, row=0)
+        self.score_label.grid(column=0, row=0)
         self.score_label.config(text=f"Score: {self.score}",
-                                font=("Arial", 10), bg=THEME_COLOR, fg="white", justify=RIGHT)
+                                font=LABEL_FONT, bg=THEME_COLOR, fg="white", justify=RIGHT)
 
         # Canvas
+        self.settings_canvas = Canvas(width=300, height=250, bg=THEME_COLOR)
+        self.settings_canvas.grid(column=0, row=1, columnspan=3, padx=10, pady=20)
+
         self.question_canvas = Canvas(width=300, height=250, bg="white")
         self.question_text = self.question_canvas.create_text(150, 125, width=280, text="This is text",
                                                               fill=THEME_COLOR, font=FONT)
-        self.question_canvas.grid(column=0, row=1, columnspan=2, padx=10, pady=20)
+        self.question_canvas.grid(column=0, row=1, columnspan=3, padx=10, pady=20)
 
         # Buttons
         self.true_button = Button()
@@ -35,9 +39,13 @@ class QuizInterface:
         self.true_button.config(image=checkmark, highlightthickness=0, command=self.check_answer_true)
 
         self.false_button = Button()
-        self.false_button.grid(column=1, row=2)
+        self.false_button.grid(column=2, row=2)
         crossmark = PhotoImage(file="images/false.png")
         self.false_button.config(image=crossmark, highlightthickness=0, command=self.check_answer_false)
+
+        self.settings_button = Button()
+        self.settings_button.grid(column=2, row=0)
+        self.settings_button.config(bg=THEME_COLOR, fg="white", text="Settings", font=LABEL_FONT, highlightthickness=0)
 
         self.get_next_question()
 

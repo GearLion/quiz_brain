@@ -11,4 +11,4 @@ for question in question_data:
     question_bank.append(new_question)
 
 quiz = QuizBrain(question_bank)
-quizzler = QuizInterface(quiz)
+quiz_app = QuizInterface(quiz)
