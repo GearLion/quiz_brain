@@ -13,6 +13,7 @@ class QuizInterface:
 
         # Window
         self.window = Tk()
+        self.window.minsize(width=370, height=460)
         self.window.title("QuizBrain")
         self.window.config(padx=20, pady=20, bg=THEME_COLOR)
 
@@ -25,7 +26,6 @@ class QuizInterface:
 
         # Canvas
         self.settings_canvas = Canvas(width=300, height=250, bg=THEME_COLOR)
-        self.settings_canvas.grid(column=0, row=1, columnspan=3, padx=10, pady=20)
 
         self.question_canvas = Canvas(width=300, height=250, bg="white")
         self.question_text = self.question_canvas.create_text(150, 125, width=280, text="This is text",
@@ -43,10 +43,14 @@ class QuizInterface:
         crossmark = PhotoImage(file="images/false.png")
         self.false_button.config(image=crossmark, highlightthickness=0, command=self.check_answer_false)
 
-        self.settings_button = Button()
+        self.settings_button = Button(command=self.go_settings)
         self.settings_button.grid(column=2, row=0)
         self.settings_button.config(bg=THEME_COLOR, fg="white", text="Settings", font=LABEL_FONT, highlightthickness=0)
 
+        self.return_button = Button(self.settings_canvas, text="Return", command=self.go_home)
+        self.return_button.grid(column=1, row=0)
+
+        # Function at Start
         self.get_next_question()
 
         self.window.mainloop()
@@ -76,3 +80,19 @@ class QuizInterface:
         else:
             self.question_canvas.config(bg="red")
         self.window.after(1000, self.get_next_question)
+
+    def go_settings(self):
+        self.question_canvas.grid_forget()
+        self.settings_canvas.grid(column=0, row=1, columnspan=3, padx=10, pady=20)
+        self.true_button.grid_forget()
+        self.false_button.grid_forget()
+        self.score_label.grid_forget()
+        self.settings_button.grid_forget()
+
+    def go_home(self):
+        self.settings_canvas.grid_forget()
+        self.question_canvas.grid(column=0, row=1, columnspan=3, padx=10, pady=20)
+        self.true_button.grid(column=0, row=2)
+        self.false_button.grid(column=2, row=2)
+        self.score_label.grid(column=0, row=0)
+        self.settings_button.grid(column=2, row=0)
